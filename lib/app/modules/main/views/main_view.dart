@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 import 'package:get/get.dart';
+import 'package:tinkoff/app/routes/app_pages.dart';
 
 import '../controllers/main_controller.dart';
 
@@ -143,8 +144,8 @@ class MainView extends GetView<MainController> {
                               ),
                               child: Stack(children: [
                                 SizedBox(
-                                    width: 100,
-                                    height: 100,
+                                    width: 90,
+                                    height: 90,
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(15),
                                       child: Image(
@@ -155,8 +156,8 @@ class MainView extends GetView<MainController> {
                                       ),
                                     )),
                                 Positioned(
-                                    bottom: 10,
-                                     left: 6,
+                                    bottom: 5,
+                                    left: 6,
                                     child: Column(children: [
                                       Text(
                                         controller.text[index],
@@ -219,9 +220,6 @@ class MainView extends GetView<MainController> {
                                           color: Colors.black,
                                           // fontWeight: FontWeight.bold,
                                           fontSize: 16)),
-                                  const SizedBox(
-                                    height: 0,
-                                  ),
                                   const Row(
                                     children: [
                                       Text('3 585',
@@ -375,113 +373,120 @@ class MainView extends GetView<MainController> {
                   const SizedBox(
                     height: 20,
                   ),
-                  Container(
-                      height: 110,
-                      width: 200,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.white,
-                      ),
-                      child: Stack(children: [
-                        Positioned(
-                          top: 10,
-                          left: 10,
-                          child: Container(
-                              width: 40,
-                              height: 40,
-                              decoration: const BoxDecoration(
-                                color: Color.fromARGB(255, 25, 111, 182),
-                                shape: BoxShape.circle,
-                              ),
-                              child: Center(
-                                child: Container(
-                                  width: 20,
-                                  height: 20,
+                  GestureDetector(
+                      onTap: () {
+                        Get.toNamed(Routes.SCORE);
+                      },
+                      child: Container(
+                          height: 110,
+                          width: 200,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.white,
+                          ),
+                          child: Stack(children: [
+                            Positioned(
+                              top: 10,
+                              left: 10,
+                              child: Container(
+                                  width: 40,
+                                  height: 40,
                                   decoration: const BoxDecoration(
-                                    color: Color.fromARGB(255, 141, 207, 238),
+                                    color: Color.fromARGB(255, 25, 111, 182),
                                     shape: BoxShape.circle,
                                   ),
-                                  child: const Icon(
-                                    Icons.currency_ruble,
-                                    size: 18,
-                                    color: Color.fromARGB(255, 25, 111, 182),
-                                  ),
-                                ),
-                              )),
-                        ),
-                        Positioned(
-                          top: 10,
-                          left: 80,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Row(children: [
-                                Text(
-                                  '179,9 ',
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                Text(
-                                  '₽',
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ]),
-                              const Text(
-                                'Tinkoff Black',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                ),
-                              ),
-                              SizedBox(
-                                  width: 55,
-                                  height: 40,
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(5),
-                                    child: const Image(
-                                      image: AssetImage(
-                                        'assets/card/card.png',
-                                      ),
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ))
-                            ],
-                          ),
-                        ),
-                        Positioned(
-                            top: 15,
-                            right: 15,
-                            child: Column(children: [
-                              Container(
-                                width: 55,
-                                height: 20,
-                                decoration: BoxDecoration(
-                                  color: Color.fromARGB(255, 69, 69, 69),
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                child: const Row(children: [
-                                  SizedBox(width: 2),
-                                  Icon(
-                                    Icons.star,
-                                    color: Color.fromARGB(255, 221, 219, 219),
-                                    size: 10,
-                                  ),
-                                  SizedBox(width: 4),
-                                  Text(
-                                    '144 ₽',
-                                    style: TextStyle(
+                                  child: Center(
+                                    child: Container(
+                                      width: 20,
+                                      height: 20,
+                                      decoration: const BoxDecoration(
                                         color:
-                                            Color.fromARGB(255, 218, 217, 217),
-                                        fontSize: 12),
+                                            Color.fromARGB(255, 141, 207, 238),
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: const Icon(
+                                        Icons.currency_ruble,
+                                        size: 18,
+                                        color:
+                                            Color.fromARGB(255, 25, 111, 182),
+                                      ),
+                                    ),
+                                  )),
+                            ),
+                            Positioned(
+                              top: 10,
+                              left: 80,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Row(children: [
+                                    Text(
+                                      '179,9 ',
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    Text(
+                                      '₽',
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ]),
+                                  const Text(
+                                    'Tinkoff Black',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                    ),
                                   ),
-                                ]),
-                              )
-                            ]))
-                      ])),
+                                  SizedBox(
+                                      width: 55,
+                                      height: 40,
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(5),
+                                        child: const Image(
+                                          image: AssetImage(
+                                            'assets/card/card.png',
+                                          ),
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ))
+                                ],
+                              ),
+                            ),
+                            Positioned(
+                                top: 15,
+                                right: 15,
+                                child: Column(children: [
+                                  Container(
+                                    width: 55,
+                                    height: 20,
+                                    decoration: BoxDecoration(
+                                      color: Color.fromARGB(255, 37, 37, 37),
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                    child: const Row(children: [
+                                      SizedBox(width: 2),
+                                      Icon(
+                                        Icons.star,
+                                        color:
+                                            Color.fromARGB(255, 221, 219, 219),
+                                        size: 10,
+                                      ),
+                                      SizedBox(width: 4),
+                                      Text(
+                                        '144 ₽',
+                                        style: TextStyle(
+                                            color: Color.fromARGB(
+                                                255, 218, 217, 217),
+                                            fontSize: 12),
+                                      ),
+                                    ]),
+                                  )
+                                ]))
+                          ]))),
 
                   //  ListTile(
                   //     leading: Container(
