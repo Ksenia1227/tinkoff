@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 import 'package:get/get.dart';
+import 'package:tinkoff/app/modules/score/widget/widget.dart';
 import 'package:tinkoff/app/routes/app_pages.dart';
 
 import '../controllers/score_controller.dart';
@@ -25,8 +26,8 @@ class ScoreView extends GetView<ScoreController> {
           ),
         ),
         body: Container(
-            padding: EdgeInsets.symmetric(horizontal: 25),
-            decoration: BoxDecoration(
+            padding: const EdgeInsets.symmetric(horizontal: 25),
+            decoration:const BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 colors: [Color.fromARGB(255, 44, 44, 44), Colors.white],
@@ -41,7 +42,7 @@ class ScoreView extends GetView<ScoreController> {
                 physics: NeverScrollableScrollPhysics(),
                 children: [
                   Column(children: [
-                    Row(children: [
+                  const   Row(children: [
                       Text('Tinkoff Black',
                           style: TextStyle(
                               color: Color.fromARGB(255, 190, 190, 190),
@@ -56,7 +57,7 @@ class ScoreView extends GetView<ScoreController> {
                         size: 20,
                       ),
                     ]),
-                    Row(children: [
+                    const Row(children: [
                       Text('238,40',
                           style: TextStyle(
                               color: Color.fromARGB(255, 190, 190, 190),
@@ -89,7 +90,7 @@ class ScoreView extends GetView<ScoreController> {
                                   fit: BoxFit.cover,
                                 ),
                               )),
-                          SizedBox(
+                          const SizedBox(
                             width: 14,
                           ),
                           Container(
@@ -105,7 +106,7 @@ class ScoreView extends GetView<ScoreController> {
                               ))
                         ])
                   ]),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   Container(
@@ -116,8 +117,8 @@ class ScoreView extends GetView<ScoreController> {
                         color: Color.fromARGB(255, 244, 243, 243),
                       ),
                       child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 18, vertical: 21),
+                          padding: const  EdgeInsets.symmetric(
+                              horizontal: 25, vertical: 23),
                           child: Row(children: [
                             Container(
                               child: Column(
@@ -148,8 +149,8 @@ class ScoreView extends GetView<ScoreController> {
                                 ],
                               ),
                             ),
-                            SizedBox(
-                              width: 40,
+                            const SizedBox(
+                              width: 45,
                             ),
                             Container(
                               child: Column(
@@ -176,32 +177,36 @@ class ScoreView extends GetView<ScoreController> {
                               ),
                             ),
                             const SizedBox(
-                              width: 40,
+                              width: 45,
                             ),
-                            Container(
-                              child: Column(
-                                children: [
-                                  Container(
-                                    width: 30,
-                                    height: 30,
-                                    decoration: const BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: Colors.blue,
+                            Center(
+                                child: GestureDetector(
+                              onTap: () => showBottom(context, controller),
+                              child: Container(
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      width: 30,
+                                      height: 30,
+                                      decoration: const BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: Colors.blue,
+                                      ),
+                                      child: const Center(
+                                          child: Icon(
+                                        Icons.arrow_forward,
+                                        color: Colors.white,
+                                      )),
                                     ),
-                                    child: const Center(
-                                        child: Icon(
-                                      Icons.arrow_forward,
-                                      color: Colors.white,
-                                    )),
-                                  ),
-                                  const Text('Перевести',
-                                      style: TextStyle(
-                                          color: Colors.blue,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 14)),
-                                ],
+                                    const Text('Перевести',
+                                        style: TextStyle(
+                                            color: Colors.blue,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 14)),
+                                  ],
+                                ),
                               ),
-                            ),
+                            ))
                           ]))),
                   const SizedBox(
                     height: 20,
@@ -210,7 +215,7 @@ class ScoreView extends GetView<ScoreController> {
                       child: Wrap(children: [
                     Container(
                         height: 180,
-                        width: 160,
+                        width: 170,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
                           color: Color.fromARGB(255, 244, 243, 243),
@@ -282,7 +287,7 @@ class ScoreView extends GetView<ScoreController> {
                     ),
                     Container(
                       height: 180,
-                      width: 160,
+                      width: 170,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
                         color: Color.fromARGB(255, 244, 243, 243),
