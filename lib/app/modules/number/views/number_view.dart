@@ -13,8 +13,12 @@ class NumberView extends GetView<NumberController> {
     return Scaffold(
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-                Get.toNamed(Routes.MONEY);
-              },
+            var input = controller.numberOrNameController.text;
+            if (input.length == 10) {
+              Get.toNamed(Routes.MONEY, arguments: input);
+              controller.numberOrNameController.clear();
+            }
+          },
           child: Icon(Icons.arrow_forward),
         ),
         appBar: AppBar(
@@ -30,102 +34,232 @@ class NumberView extends GetView<NumberController> {
           ),
           // centerTitle: true,
         ),
-        body: Obx(() => Stack(
-              children: [
-                SingleChildScrollView(
-                    child: Container(
-                  width: 450,
-                  child: Padding(
-                      padding: const EdgeInsets.all(15),
-                      child: ListView(
-                          shrinkWrap: true,
-                          physics: NeverScrollableScrollPhysics(),
+        body: Obx(() => SingleChildScrollView(
+                child:
+                    // Stack(children: [
+                    // Container(
+                    //   height: 500,
+                    // ),
+
+                    Column(children: [
+              Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Row(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 12),
+                        height: 50,
+                        width: 80,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(7),
+                            color: Color.fromARGB(255, 220, 218, 218)),
+                        child: Row(
                           children: [
-                            Container(
-                              height: 60,
-                              color: Colors.white,
-                            ),
-                            Container(
-                              height: 300,
-                              color: const Color.fromARGB(255, 94, 86, 62),
-                            ),
-                             Container(
-                                height: 300,
-                                color: Colors.red,
-                              ),
-                            
-                          ])),
-                )),
-                Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Row(
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 12),
-                          height: 50,
-                          width: 80,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(7),
-                              color: Color.fromARGB(255, 220, 218, 218)),
-                          child: Row(
-                            children: [
-                              SizedBox(
-                                  width: 22,
-                                  height: 22,
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(10),
-                                    child: const Image(
-                                      image: AssetImage(
-                                        'assets/company/flag.jpg',
-                                      ),
-                                      fit: BoxFit.cover,
+                            SizedBox(
+                                width: 22,
+                                height: 22,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(10),
+                                  child: const Image(
+                                    image: AssetImage(
+                                      'assets/company/flag.jpg',
                                     ),
-                                  )),
-                              const SizedBox(
-                                width: 2,
-                              ),
-                              const Text('+7', style: TextStyle(fontSize: 20)),
-                            ],
-                          ),
-                          // ])
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        Container(
-                          width: 270,
-                          height: 50,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(7),
-                              color: Color.fromARGB(255, 220, 218, 218)),
-                          child: TextField(
-                            controller: controller.numberOrNameController,
-                            style: const TextStyle(
-                                color: Color.fromARGB(255, 2, 2, 2)),
-                            decoration: const InputDecoration(
-                              border: InputBorder.none,
-                              contentPadding:
-                                  EdgeInsets.symmetric(horizontal: 20),
-                              hintText: 'Номер или имя',
-                              fillColor: Color.fromARGB(31, 171, 170, 170),
-                              filled: true,
+                                    fit: BoxFit.cover,
+                                  ),
+                                )),
+                            const SizedBox(
+                              width: 2,
                             ),
-                            onChanged: (value) {
-                              if (value.contains(RegExp(r'\d'))) {
-                                controller.isDigitsOnly.value = true;
-                              } else {
-                                controller.isDigitsOnly.value = false;
-                              }
-                            },
-                            inputFormatters: [
-                              if (controller.isDigitsOnly.isTrue)
-                                LengthLimitingTextInputFormatter(10),
-                            ],
-                          ),
+                            const Text('+7', style: TextStyle(fontSize: 20)),
+                          ],
                         ),
-                      ],
-                    )),
-              ],
-            )));
+                        // ])
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Container(
+                        width: 270,
+                        height: 50,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(7),
+                            color: Color.fromARGB(255, 220, 218, 218)),
+                        child: TextField(
+                          controller: controller.numberOrNameController,
+                          style: const TextStyle(
+                              color: Color.fromARGB(255, 2, 2, 2)),
+                          decoration: const InputDecoration(
+                            border: InputBorder.none,
+                            contentPadding:
+                                EdgeInsets.symmetric(horizontal: 20),
+                            hintText: 'Номер или имя',
+                            fillColor: Color.fromARGB(31, 171, 170, 170),
+                            filled: true,
+                          ),
+                          onChanged: (value) {
+                            if (value.contains(RegExp(r'\d'))) {
+                              controller.isDigitsOnly.value = true;
+                            } else {
+                              controller.isDigitsOnly.value = false;
+                            }
+                          },
+                          inputFormatters: [
+                            if (controller.isDigitsOnly.isTrue)
+                              LengthLimitingTextInputFormatter(10),
+                          ],
+                        ),
+                      ),
+                    ],
+                  )),
+              // Obx(() => SingleChildScrollView(
+              //       child:
+              // Stack(children: [
+              // Container(
+              //   height: 500,
+              // ),
+              // GestureDetector(
+              //   onTap: () {
+              //     Get.toNamed(Routes.MONEY);
+              //   },
+              // child:
+              ListView.builder(
+                  itemCount: controller.listPeople.length,
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  itemBuilder: (context, index) {
+                    return GestureDetector(
+                        onTap: () {
+                          Get.toNamed(Routes.MONEY,
+                              arguments: controller.listPeople[index].name);
+                        },
+                        child: Card(
+                          color: Colors.transparent,
+                          elevation: 0,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20)),
+                          margin: const EdgeInsets.symmetric(
+                              vertical: 5, horizontal: 10),
+                          child: ListTile(
+                            leading: Container(
+                              margin: EdgeInsets.symmetric(horizontal: 15),
+                              width: 40,
+                              height: 40,
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Color.fromARGB(255, 96, 95, 95),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  controller.listPeople[index].name[0],
+                                  style: const TextStyle(
+                                      fontSize: 17,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            ),
+                            title: Text(
+                              controller.listPeople[index].name,
+                              style: TextStyle(fontSize: 20),
+                            ),
+                            subtitle: Text(controller.listPeople[index].number,
+                                style: const TextStyle(
+                                    fontSize: 15, color: Colors.grey)),
+                            // Row(
+                            //       children: [
+                            //         Container(
+                            //           margin: EdgeInsets.all(10),
+                            //           width: 40,
+                            //           height: 40,
+                            //           decoration: const BoxDecoration(
+                            //             shape: BoxShape.circle,
+                            //             color: Color.fromARGB(255, 96, 95, 95),
+                            //           ),
+                            //           child: Center(
+                            //             child: Text(
+                            //               controller.listPeople[index].name[0],
+                            //               style: const TextStyle(
+                            //                   fontSize: 15,
+                            //                   color: Colors.white,
+                            //                   fontWeight: FontWeight.bold),
+                            //             ),
+                            //           ),
+                            //         ),
+
+                            //       ],
+                          ),
+                        ));
+                  }),
+
+              // Container(
+              //     padding: const EdgeInsets.symmetric(horizontal: 20),
+              //     child: Row(
+              //       children: [
+              //         Container(
+              //           padding: const EdgeInsets.symmetric(horizontal: 12),
+              //           height: 50,
+              //           width: 80,
+              //           decoration: BoxDecoration(
+              //               borderRadius: BorderRadius.circular(7),
+              //               color: Color.fromARGB(255, 220, 218, 218)),
+              //           child: Row(
+              //             children: [
+              //               SizedBox(
+              //                   width: 22,
+              //                   height: 22,
+              //                   child: ClipRRect(
+              //                     borderRadius: BorderRadius.circular(10),
+              //                     child: const Image(
+              //                       image: AssetImage(
+              //                         'assets/company/flag.jpg',
+              //                       ),
+              //                       fit: BoxFit.cover,
+              //                     ),
+              //                   )),
+              //               const SizedBox(
+              //                 width: 2,
+              //               ),
+              //               const Text('+7', style: TextStyle(fontSize: 20)),
+              //             ],
+              //           ),
+              //           // ])
+              //         ),
+              //         const SizedBox(
+              //           width: 10,
+              //         ),
+              //         Container(
+              //           width: 270,
+              //           height: 50,
+              //           decoration: BoxDecoration(
+              //               borderRadius: BorderRadius.circular(7),
+              //               color: Color.fromARGB(255, 220, 218, 218)),
+              //           child: TextField(
+              //             controller: controller.numberOrNameController,
+              //             style: const TextStyle(
+              //                 color: Color.fromARGB(255, 2, 2, 2)),
+              //             decoration: const InputDecoration(
+              //               border: InputBorder.none,
+              //               contentPadding:
+              //                   EdgeInsets.symmetric(horizontal: 20),
+              //               hintText: 'Номер или имя',
+              //               fillColor: Color.fromARGB(31, 171, 170, 170),
+              //               filled: true,
+              //             ),
+              //             onChanged: (value) {
+              //               if (value.contains(RegExp(r'\d'))) {
+              //                 controller.isDigitsOnly.value = true;
+              //               } else {
+              //                 controller.isDigitsOnly.value = false;
+              //               }
+              //             },
+              //             inputFormatters: [
+              //               if (controller.isDigitsOnly.isTrue)
+              //                 LengthLimitingTextInputFormatter(10),
+              //             ],
+              //           ),
+              //         ),
+              //       ],
+              //     )),
+            ]))));
   }
 }

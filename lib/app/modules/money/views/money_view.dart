@@ -76,7 +76,7 @@ class MoneyView extends GetView<MoneyController> {
                           color: Colors.grey[100],
                           borderRadius: BorderRadius.circular(15),
                         ),
-                        child: Text('+71234567890',
+                        child: Text(Get.arguments,
                             style: TextStyle(fontSize: 20))),
                     const SizedBox(
                       height: 22,

@@ -32,7 +32,7 @@ showBottom(BuildContext context, ScoreController controller) {
                       Container(
                         width: 300,
                         height: 40,
-                        padding: const EdgeInsets.symmetric( vertical: 2),
+                        padding: const EdgeInsets.symmetric(vertical: 2),
                         child: TextField(
                           style: const TextStyle(
                               color: Color.fromARGB(255, 217, 213, 213)),
@@ -44,51 +44,54 @@ showBottom(BuildContext context, ScoreController controller) {
                               color: Color.fromARGB(255, 108, 107, 106),
                             ),
                             hintText: 'Поиск',
-                            fillColor: Color.fromARGB(31, 171, 170, 170),
+                            fillColor: Color.fromARGB(31, 9, 9, 9),
                           ),
                         ),
                       ),
                       const SizedBox(
                         height: 10,
                       ),
-                      Obx(
-                        () => SingleChildScrollView(
+                      Obx(() => SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
                             child: Row(
-                              children: List.generate(
-                                  controller.letters.length,
-                                  (index) => Column(children: [
-                                        Container(
-                                          margin: EdgeInsets.all(10),
-                                          width: 40,
-                                          height: 40,
-                                          decoration: const BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            color: Color.fromARGB(
-                                                255, 96, 95, 95), // Цвет круга
-                                          ),
-                                          child: Center(
-                                            child: Text(
-                                              controller.letters[index],
-                                              style: const TextStyle(
-                                                  fontSize: 15,
-                                                  color: Colors.white,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                          ),
+                                children: List.generate(
+                              controller.listPeople.length,
+                              (index) => GestureDetector(
+                                  onTap: () {
+                                    Get.toNamed(Routes.MONEY,arguments: controller.listPeople[index].name);
+                                  },
+                                  child: Column(children: [
+                                    Container(
+                                      margin: EdgeInsets.all(10),
+                                      width: 40,
+                                      height: 40,
+                                      decoration: const BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: Color.fromARGB(
+                                            255, 96, 95, 95), 
+                                      ),
+                                      child: Center(
+                                        child: Text(
+                                          controller.listPeople[index].name[0],
+                                          style: const TextStyle(
+                                              fontSize: 15,
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold),
                                         ),
-                                        Text(controller.name[index],
-                                            style: const TextStyle(
-                                                fontSize: 15,
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.w400)),
-                                      ])),
+                                      ),
+                                    ),
+                                    Text(controller.listPeople[index].name,
+                                        style: const TextStyle(
+                                            fontSize: 15,
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.w400)),
+                                  ])),
                             )),
-                      ),
+                          )),
                       const SizedBox(
                         height: 15,
                       ),
-                     ListTile(
+                      ListTile(
                           leading: CircleAvatar(
                             radius: 15,
                             backgroundColor: Colors.blue,
@@ -109,8 +112,7 @@ showBottom(BuildContext context, ScoreController controller) {
                           ),
                           onTap: () {
                             Get.toNamed(Routes.NUMBER);
-                          }
-                          ),
+                          }),
                       const SizedBox(
                         height: 5,
                       ),
@@ -157,42 +159,52 @@ showBottom(BuildContext context, ScoreController controller) {
                           size: 18,
                         ),
                       ),
-                     const  SizedBox(height: 5,),
-             const  ListTile(
-                leading:CircleAvatar(
-            radius: 15,
-            backgroundColor: Colors.blue,
-            child: Icon(
-              Icons.description,
-              size:15,
-              color: Colors.white,
-            ),
-          ),
-                title: Text('По номеру договора',
-                    style: TextStyle(
-                      fontSize: 15,
-                      color: Colors.black,
-                    )),
-                trailing: Icon(Icons.arrow_forward_ios, size: 18,),
-              ),
-                     const  SizedBox(height: 5,),
-              const ListTile(
-                leading:CircleAvatar(
-            radius: 15,
-            backgroundColor: Colors.blue,
-            child: Icon(
-               Icons.nightlight,
-              size: 15,
-              color: Colors.white,
-            ),
-          ),
-                title: Text('SWIFT-переводы',
-                    style: TextStyle(
-                      fontSize: 15,
-                      color: Colors.black,
-                    )),
-                trailing: Icon(Icons.arrow_forward_ios, size: 18,),
-              ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      const ListTile(
+                        leading: CircleAvatar(
+                          radius: 15,
+                          backgroundColor: Colors.blue,
+                          child: Icon(
+                            Icons.description,
+                            size: 15,
+                            color: Colors.white,
+                          ),
+                        ),
+                        title: Text('По номеру договора',
+                            style: TextStyle(
+                              fontSize: 15,
+                              color: Colors.black,
+                            )),
+                        trailing: Icon(
+                          Icons.arrow_forward_ios,
+                          size: 18,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      const ListTile(
+                        leading: CircleAvatar(
+                          radius: 15,
+                          backgroundColor: Colors.blue,
+                          child: Icon(
+                            Icons.nightlight,
+                            size: 15,
+                            color: Colors.white,
+                          ),
+                        ),
+                        title: Text('SWIFT-переводы',
+                            style: TextStyle(
+                              fontSize: 15,
+                              color: Colors.black,
+                            )),
+                        trailing: Icon(
+                          Icons.arrow_forward_ios,
+                          size: 18,
+                        ),
+                      ),
                     ])));
       });
 }
