@@ -4,6 +4,12 @@ import 'package:get/get.dart';
 class MoneyController extends GetxController {
   //TODO: Implement MoneyController
   final moneyController=TextEditingController();
+  final selectedIndex = 0.obs; 
+
+
+   void selectContainer(int index) {
+      selectedIndex.value = index;
+    }
 
   final count = 0.obs;
   @override

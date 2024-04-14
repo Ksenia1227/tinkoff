@@ -7,6 +7,7 @@ abstract class Routes {
   static const SCORE = _Paths.SCORE;
   static const NUMBER = _Paths.NUMBER;
   static const MONEY = _Paths.MONEY;
+  static const CHECK = _Paths.CHECK;
 }
 
 abstract class _Paths {
@@ -15,4 +16,5 @@ abstract class _Paths {
   static const SCORE = '/score';
   static const NUMBER = '/number';
   static const MONEY = '/money';
+  static const CHECK = '/check';
 }

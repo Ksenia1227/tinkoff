@@ -11,6 +11,12 @@ class NumberView extends GetView<NumberController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+                Get.toNamed(Routes.MONEY);
+              },
+          child: Icon(Icons.arrow_forward),
+        ),
         appBar: AppBar(
           leading: IconButton(
             icon: const Icon(Icons.clear),
@@ -24,98 +30,102 @@ class NumberView extends GetView<NumberController> {
           ),
           // centerTitle: true,
         ),
-        body: Obx(()=> Stack(
-          children: [
-            SingleChildScrollView(
-                child: Container(
-              width: 450,
-              child: Padding(
-                  padding: const EdgeInsets.all(15),
-                  child: ListView(
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
+        body: Obx(() => Stack(
+              children: [
+                SingleChildScrollView(
+                    child: Container(
+                  width: 450,
+                  child: Padding(
+                      padding: const EdgeInsets.all(15),
+                      child: ListView(
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          children: [
+                            Container(
+                              height: 60,
+                              color: Colors.white,
+                            ),
+                            Container(
+                              height: 300,
+                              color: const Color.fromARGB(255, 94, 86, 62),
+                            ),
+                             Container(
+                                height: 300,
+                                color: Colors.red,
+                              ),
+                            
+                          ])),
+                )),
+                Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Row(
                       children: [
                         Container(
-                          height: 60,
-                          color: Colors.white,
-                        ),
-                        Container(
-                          height: 300,
-                          color: const Color.fromARGB(255, 94, 86, 62),
-                        ),
-                        GestureDetector(
-            onTap: () {
-              Get.toNamed(Routes.MONEY);
-            },
-            child: 
-                        Container(
-                          height: 300,
-                          color: Colors.red,
-                        ),
-                )])),
-            )),
-            Container(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Row(
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 12),
-                      height: 50,
-                      width: 80,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(7),
-                          color: Color.fromARGB(255, 220, 218, 218)),
-                      child: Row(
-                        children: [
-                          Container(
-                              width: 22,
-                              height: 22,
-                              decoration: const BoxDecoration(
-                                color: Color.fromARGB(255, 25, 111, 182),
-                                shape: BoxShape.circle,
-                              )),
-                          const SizedBox(
-                            width: 2,
+                          padding: const EdgeInsets.symmetric(horizontal: 12),
+                          height: 50,
+                          width: 80,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(7),
+                              color: Color.fromARGB(255, 220, 218, 218)),
+                          child: Row(
+                            children: [
+                              SizedBox(
+                                  width: 22,
+                                  height: 22,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(10),
+                                    child: const Image(
+                                      image: AssetImage(
+                                        'assets/company/flag.jpg',
+                                      ),
+                                      fit: BoxFit.cover,
+                                    ),
+                                  )),
+                              const SizedBox(
+                                width: 2,
+                              ),
+                              const Text('+7', style: TextStyle(fontSize: 20)),
+                            ],
                           ),
-                          const Text('+7', style: TextStyle(fontSize: 20)),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Container(
-                      width: 270,
-                      height: 50,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(7),
-                          color: Color.fromARGB(255, 220, 218, 218)),
-                      child: TextField(
-                        controller: controller.numberOrNameController,
-                        style: const TextStyle(color: Color.fromARGB(255, 2, 2, 2)),
-                        decoration: const InputDecoration(
-                          border: InputBorder.none,
-                          contentPadding: EdgeInsets.symmetric(horizontal: 20),
-                          hintText: 'Номер или имя',
-                          fillColor: Color.fromARGB(31, 171, 170, 170),
-                          filled: true,
+                          // ])
                         ),
-                        onChanged: (value) {
-                          if (value.contains(RegExp(r'\d'))) {
-                            controller.isDigitsOnly.value = true;
-                          } else {
-                            controller.isDigitsOnly.value = false;
-                          }
-                        },
-                        inputFormatters: [
-                          if (controller.isDigitsOnly.isTrue)
-                            LengthLimitingTextInputFormatter(10),
-                        ],
-                      ),
-                    ),
-                  ],
-                )),
-          ],
-        )));
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        Container(
+                          width: 270,
+                          height: 50,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(7),
+                              color: Color.fromARGB(255, 220, 218, 218)),
+                          child: TextField(
+                            controller: controller.numberOrNameController,
+                            style: const TextStyle(
+                                color: Color.fromARGB(255, 2, 2, 2)),
+                            decoration: const InputDecoration(
+                              border: InputBorder.none,
+                              contentPadding:
+                                  EdgeInsets.symmetric(horizontal: 20),
+                              hintText: 'Номер или имя',
+                              fillColor: Color.fromARGB(31, 171, 170, 170),
+                              filled: true,
+                            ),
+                            onChanged: (value) {
+                              if (value.contains(RegExp(r'\d'))) {
+                                controller.isDigitsOnly.value = true;
+                              } else {
+                                controller.isDigitsOnly.value = false;
+                              }
+                            },
+                            inputFormatters: [
+                              if (controller.isDigitsOnly.isTrue)
+                                LengthLimitingTextInputFormatter(10),
+                            ],
+                          ),
+                        ),
+                      ],
+                    )),
+              ],
+            )));
   }
 }

@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import '../modules/check/bindings/check_binding.dart';
+import '../modules/check/views/check_view.dart';
 import '../modules/main/bindings/main_binding.dart';
 import '../modules/main/views/main_view.dart';
 import '../modules/money/bindings/money_binding.dart';
@@ -36,6 +38,11 @@ class AppPages {
       name: _Paths.MONEY,
       page: () => const MoneyView(),
       binding: MoneyBinding(),
+    ),
+    GetPage(
+      name: _Paths.CHECK,
+      page: () => const CheckView(),
+      binding: CheckBinding(),
     ),
   ];
 }

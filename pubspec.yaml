@@ -69,6 +69,11 @@ flutter:
       - assets/company/lapenko.jpg
       - assets/company/ponchiki.jpg
       - assets/company/blue.jpg
+      - assets/company/sbp.png
+      - assets/company/tinkof.png
+      - assets/company/flag.jpg
+      - assets/company/cber.png
+      
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
