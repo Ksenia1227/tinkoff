@@ -2,10 +2,7 @@ import 'dart:math';
 
 import 'package:get/get.dart';
 
-class FakeService extends GetxService {
-  Future<FakeService> init() async {
-    return this;
-  }
+class FakeNetService extends GetxService {
   final _score=200.00.obs;
   final _value=''.obs;
   Future<String> changeMoney() async {
