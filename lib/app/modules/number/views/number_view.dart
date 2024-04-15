@@ -15,7 +15,7 @@ class NumberView extends GetView<NumberController> {
           onPressed: () {
             var input = controller.numberOrNameController.text;
             if (input.length == 10) {
-              Get.toNamed(Routes.MONEY, arguments: input);
+              Get.toNamed(Routes.MONEY, arguments: {'arg1': '', 'arg2': input});
               controller.numberOrNameController.clear();
             }
           },
@@ -123,14 +123,17 @@ class NumberView extends GetView<NumberController> {
               //   },
               // child:
               ListView.builder(
-                  itemCount: controller.listPeople.length,
+                  itemCount: controller.filterPeople.length,
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index) {
                     return GestureDetector(
                         onTap: () {
-                          Get.toNamed(Routes.MONEY,
-                              arguments: controller.listPeople[index].name);
+                          Get.toNamed(Routes.MONEY, arguments: {
+                            'arg1': controller.filterPeople[index].name,
+                            'arg2': controller.filterPeople[index].number
+                                .substring(1)
+                          });
                         },
                         child: Card(
                           color: Colors.transparent,
@@ -150,7 +153,7 @@ class NumberView extends GetView<NumberController> {
                               ),
                               child: Center(
                                 child: Text(
-                                  controller.listPeople[index].name[0],
+                                  controller.filterPeople[index].name[0],
                                   style: const TextStyle(
                                       fontSize: 17,
                                       color: Colors.white,
@@ -159,10 +162,11 @@ class NumberView extends GetView<NumberController> {
                               ),
                             ),
                             title: Text(
-                              controller.listPeople[index].name,
+                              controller.filterPeople[index].name,
                               style: TextStyle(fontSize: 20),
                             ),
-                            subtitle: Text(controller.listPeople[index].number,
+                            subtitle: Text(
+                                controller.filterPeople[index].number,
                                 style: const TextStyle(
                                     fontSize: 15, color: Colors.grey)),
                             // Row(

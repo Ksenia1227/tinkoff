@@ -5,7 +5,7 @@ abstract class FakeDataClass {
 }
 
 List<People> listpeople = [
-  People('Алёна', '89523241044'),
+  People('Алёна', '89523241044',),
   People('Даша', '89527334105'),
   People('Таня', '89523231074'),
   People('Костя', '89763241744'),

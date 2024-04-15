@@ -71,13 +71,41 @@ class MoneyView extends GetView<MoneyController> {
                     Container(
                         height: 52,
                         width: 350,
-                        padding: const EdgeInsets.all(13),
+                         padding: const EdgeInsets.symmetric(horizontal: 13),
                         decoration: BoxDecoration(
                           color: Colors.grey[100],
                           borderRadius: BorderRadius.circular(15),
                         ),
-                        child: Text(Get.arguments,
-                            style: TextStyle(fontSize: 20))),
+                        child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(() {
+                                final args =
+                                    Get.arguments as Map<String, dynamic>;
+                                final arg1 = args['arg1'];
+                                return arg1;
+                              }(), style: TextStyle(fontSize: 13,color: Color.fromARGB(255, 120, 120, 120))
+                                  // Text( int.tryParse(Get.arguments) != null ? "+7${Get.arguments}" : Get.arguments,
+                                  //     style: TextStyle(fontSize: 20))
+                                  // subtitle: Text(
+                                  // "+7${Get.arguments['arg1'] as Map<String, dynamic>}"),
+                                  // title: Text('${Get.arguments['arg2'] as Map<String, dynamic>}'),
+                                  ),
+                              const SizedBox(
+                                height: 0.5,
+                              ),
+                              Text(
+                                () {
+                                  final args =
+                                      Get.arguments as Map<String, dynamic>;
+                                  final arg2 = args['arg2'];
+                                  return "+7$arg2";
+                                }(),
+                                style: const TextStyle(
+                                    fontSize: 17,
+                                    ),
+                              )
+                            ])),
                     const SizedBox(
                       height: 22,
                     ),
