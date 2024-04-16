@@ -37,7 +37,7 @@ class AppPages {
     GetPage(
       name: _Paths.MONEY,
       page: () => const MoneyView(),
-      binding: MoneyBinding(),
+      // binding: MoneyBinding(),
     ),
     GetPage(
       name: _Paths.CHECK,

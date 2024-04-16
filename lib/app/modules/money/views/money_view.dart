@@ -8,8 +8,10 @@ import '../controllers/money_controller.dart';
 
 class MoneyView extends GetView<MoneyController> {
   const MoneyView({Key? key}) : super(key: key);
+   
   @override
   Widget build(BuildContext context) {
+    final controller=Get.put(MoneyController());
     return Scaffold(
         appBar: AppBar(
           title: const Text('Перевести'),
@@ -185,6 +187,7 @@ class MoneyView extends GetView<MoneyController> {
                             'arg2': controller.moneyController.text,
                           });
                           controller.transferMoney();
+                          controller.checkAndSearchScore();
                           // controller.checkController.searchScore();
                         },
                         child: Container(

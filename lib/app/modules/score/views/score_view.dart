@@ -26,6 +26,7 @@ class ScoreView extends GetView<ScoreController> {
           ),
         ),
         body: Container(
+          width: 450,
             padding: const EdgeInsets.symmetric(horizontal: 25),
             decoration:const BoxDecoration(
               gradient: LinearGradient(
@@ -111,7 +112,7 @@ class ScoreView extends GetView<ScoreController> {
                   ),
                   Container(
                       height: 100,
-                      width: 357,
+                      width: 320,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
                         color: Color.fromARGB(255, 244, 243, 243),

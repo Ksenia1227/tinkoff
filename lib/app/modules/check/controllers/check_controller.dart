@@ -29,22 +29,22 @@ class CheckController extends GetxController {
   //   return newsc;
   // }
 
-  final count = 0.obs;
+  // final count = 0.obs;
   @override
   void onInit() {
     searchScore();
     super.onInit();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
+  // @override
+  // void onReady() {
+  //   super.onReady();
+  // }
 
-  @override
-  void onClose() {
-    super.onClose();
-  }
+  // @override
+  // void onClose() {
+  //   super.onClose();
+  // }
 
-  void increment() => count.value++;
+  // void increment() => count.value++;
 }

@@ -11,8 +11,17 @@ class MoneyController extends GetxController {
   final currentPeople=''.obs;
   FakeNetService fakeNetService = Get.find();
   FakeService fakeService = Get.find();
-  // var checkController = Get.find<CheckController>();
   final score = ''.obs;
+  final openPageCount = 0.obs; 
+
+ 
+  void checkAndSearchScore() { 
+    openPageCount.value=1+openPageCount.value; 
+    if (openPageCount.value > 1) { 
+      var checkController = Get.find<CheckController>(); 
+      checkController.searchScore(); 
+    } 
+  }
 
   void selectContainer(int index) {
     selectedIndex.value = index;

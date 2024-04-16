@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:get/get.dart';
+import 'package:tinkoff/app/modules/money/views/money_view.dart';
 import 'package:tinkoff/app/routes/app_pages.dart';
 
 import '../controllers/number_controller.dart';
@@ -15,8 +16,17 @@ class NumberView extends GetView<NumberController> {
           onPressed: () {
             var input = controller.numberOrNameController.text;
             if (input.length == 10) {
-              Get.toNamed(Routes.MONEY, arguments: {'arg1': '', 'arg2': input});
-              controller.numberOrNameController.clear();
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MoneyView(),
+                    settings: RouteSettings(arguments: {
+                      {'arg1': '', 'arg2': input}
+                    }),
+                    //                     maintainState: true));
+                    // Get.toNamed(Routes.MONEY, arguments: {'arg1': '', 'arg2': input});
+                    // controller.numberOrNameController.clear();
+                  ));
             }
           },
           child: Icon(Icons.arrow_forward),
@@ -129,11 +139,22 @@ class NumberView extends GetView<NumberController> {
                   itemBuilder: (context, index) {
                     return GestureDetector(
                         onTap: () {
-                          Get.toNamed(Routes.MONEY, arguments: {
-                            'arg1': controller.filterPeople[index].name,
-                            'arg2': controller.filterPeople[index].number
-                                .substring(1)
-                          });
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => MoneyView(),
+                                  settings: RouteSettings(arguments: {
+                                    'arg1': controller.filterPeople[index].name,
+                                    'arg2': controller
+                                        .filterPeople[index].number
+                                        .substring(1)
+                                  }),
+                                  maintainState: true));
+                          // Get.toNamed(Routes.MONEY, arguments: {
+                          //   'arg1': controller.filterPeople[index].name,
+                          //   'arg2': controller.filterPeople[index].number
+                          //       .substring(1)
+                          // });
                         },
                         child: Card(
                           color: Colors.transparent,

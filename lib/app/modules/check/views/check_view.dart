@@ -221,8 +221,9 @@ class CheckView extends GetView<CheckController> {
                         Get.toNamed(Routes.MAIN);
                         controller.mainController.searchScore();
                         controller.scoreController.searchScore();
-                        controller.moneyController.searchScore();
-                        controller.searchScore();
+                         controller.moneyController.searchScore();
+                        // controller.searchScore();
+                         controller.moneyController.moneyController.clear();
                       },
                       child: Container(
                         height: 50,

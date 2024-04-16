@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:tinkoff/app/modules/money/views/money_view.dart';
 import 'package:tinkoff/app/modules/score/controllers/score_controller.dart';
 import 'package:tinkoff/app/routes/app_pages.dart';
 
@@ -11,8 +12,8 @@ showBottom(BuildContext context, ScoreController controller) {
       builder: (BuildContext context) {
         return SingleChildScrollView(
             child: Container(
-                width: 400,
-                height: 900,
+                width: 440,
+                height: 600,
                 padding:
                     const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 decoration: BoxDecoration(
@@ -30,7 +31,7 @@ showBottom(BuildContext context, ScoreController controller) {
                       //     )),
                       SizedBox(height: 18),
                       Container(
-                        width: 300,
+                        width: 435,
                         height: 40,
                         padding: const EdgeInsets.symmetric(vertical: 2),
                         child: TextField(
@@ -58,11 +59,24 @@ showBottom(BuildContext context, ScoreController controller) {
                               controller.listPeople.length,
                               (index) => GestureDetector(
                                   onTap: () {
-                                    Get.toNamed(Routes.MONEY,arguments: {
-                            'arg1': controller.listPeople[index].name,
-                            'arg2': controller.listPeople[index].number
-                                .substring(1)
-                          } );
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => MoneyView(),
+                                            settings: RouteSettings(arguments: {
+                                              'arg1': controller
+                                                  .listPeople[index].name,
+                                              'arg2': controller
+                                                  .listPeople[index].number
+                                                  .substring(1)
+                                            }),
+                                            maintainState: true));
+                                    //   'arg2': controller.listPeople[index].number ))
+                                    //           Get.toNamed(Routes.MONEY,arguments: {
+                                    //   'arg1': controller.listPeople[index].name,
+                                    //   'arg2': controller.listPeople[index].number
+                                    //       .substring(1)
+                                    // } );
                                   },
                                   child: Column(children: [
                                     Container(
@@ -71,8 +85,7 @@ showBottom(BuildContext context, ScoreController controller) {
                                       height: 40,
                                       decoration: const BoxDecoration(
                                         shape: BoxShape.circle,
-                                        color: Color.fromARGB(
-                                            255, 96, 95, 95), 
+                                        color: Color.fromARGB(255, 96, 95, 95),
                                       ),
                                       child: Center(
                                         child: Text(
