@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tinkoff/app/modules/check/controllers/check_controller.dart';
 import 'package:tinkoff/app/service/fake_name_service.dart';
 import 'package:tinkoff/app/service/fake_service.dart';
 
@@ -10,6 +11,7 @@ class MoneyController extends GetxController {
   final currentPeople=''.obs;
   FakeNetService fakeNetService = Get.find();
   FakeService fakeService = Get.find();
+  // var checkController = Get.find<CheckController>();
   final score = ''.obs;
 
   void selectContainer(int index) {

@@ -8,8 +8,7 @@ class FakeNetService extends GetxService {
   Future<String> changeMoney(controller) async {
     double contr = double.tryParse(controller)!;
     double value = double.tryParse(_score.value)!; 
-    double sc = value - contr;
-    _score.value= sc.toString();
+    _score.value= (value - contr).toString();
     print(_score.value);
     await _randomDelay();
 return _score.value;

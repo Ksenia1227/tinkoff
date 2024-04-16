@@ -28,9 +28,8 @@ void onItemTapped(int index) {
     super.onInit();
   }
 void searchScore(){
-  print('service - ${fakeNetService.value}');
  score.value=fakeNetService.value;
- print('score - ${score.value}');
+
 }
   // @override
   // void onReady() {

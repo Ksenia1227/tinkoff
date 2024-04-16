@@ -185,6 +185,7 @@ class MoneyView extends GetView<MoneyController> {
                             'arg2': controller.moneyController.text,
                           });
                           controller.transferMoney();
+                          // controller.checkController.searchScore();
                         },
                         child: Container(
                           height: 50,

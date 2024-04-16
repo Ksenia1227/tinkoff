@@ -34,16 +34,9 @@ class CheckView extends GetView<CheckController> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Obx(() => Text(() {
-                            double newsco = double.parse(
-                                    controller.score.value) +
-                                double.parse(controller.outgoingMoney.value);
-                            String newsc = newsco.toString();
-                            return newsc;
-                          }(),
-                              style: const TextStyle(
-                                  decoration: TextDecoration.lineThrough,
-                                  fontSize: 18))),
+                      Text(controller.oldscore.value,  style: const TextStyle(
+                                 decoration: TextDecoration.lineThrough,
+                                  fontSize: 18)),
                       const SizedBox(
                         width: 3,
                       ),
@@ -58,8 +51,8 @@ class CheckView extends GetView<CheckController> {
                       const SizedBox(
                         width: 10,
                       ),
-                      Text(controller.score.value,
-                          style: TextStyle(fontSize: 18)),
+                      Obx(() => Text(controller.score.value,
+                          style: TextStyle(fontSize: 18))),
                       const SizedBox(
                         width: 3,
                       ),
@@ -76,8 +69,8 @@ class CheckView extends GetView<CheckController> {
                         width: 10,
                       ),
                       Text(() {
-                        final args = Get.arguments as Map<String, dynamic>;
-                        controller.outgoingMoney.value = args['arg2'];
+                          final args = Get.arguments as Map<String, dynamic>;
+                          controller.outgoingMoney.value = args['arg2'];
                         return controller.outgoingMoney.value;
                       }(),
                           style: const TextStyle(
@@ -226,6 +219,10 @@ class CheckView extends GetView<CheckController> {
                   GestureDetector(
                       onTap: () {
                         Get.toNamed(Routes.MAIN);
+                        controller.mainController.searchScore();
+                        controller.scoreController.searchScore();
+                        controller.moneyController.searchScore();
+                        controller.searchScore();
                       },
                       child: Container(
                         height: 50,
