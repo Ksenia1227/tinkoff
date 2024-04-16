@@ -58,7 +58,11 @@ showBottom(BuildContext context, ScoreController controller) {
                               controller.listPeople.length,
                               (index) => GestureDetector(
                                   onTap: () {
-                                    Get.toNamed(Routes.MONEY,arguments: controller.listPeople[index].name);
+                                    Get.toNamed(Routes.MONEY,arguments: {
+                            'arg1': controller.listPeople[index].name,
+                            'arg2': controller.listPeople[index].number
+                                .substring(1)
+                          } );
                                   },
                                   child: Column(children: [
                                     Container(

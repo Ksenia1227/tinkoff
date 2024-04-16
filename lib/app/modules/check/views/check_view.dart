@@ -31,52 +31,63 @@ class CheckView extends GetView<CheckController> {
                     'Tinkoff Black',
                     style: TextStyle(fontSize: 20),
                   ),
-                  const Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text('21356',
-                          style: TextStyle(
-                              decoration: TextDecoration.lineThrough,
-                              fontSize: 18)),
-                      SizedBox(
+                      Obx(() => Text(() {
+                            double newsco = double.parse(
+                                    controller.score.value) +
+                                double.parse(controller.outgoingMoney.value);
+                            String newsc = newsco.toString();
+                            return newsc;
+                          }(),
+                              style: const TextStyle(
+                                  decoration: TextDecoration.lineThrough,
+                                  fontSize: 18))),
+                      const SizedBox(
                         width: 3,
                       ),
-                      Text('₽', style: TextStyle(fontSize: 18)),
-                      SizedBox(
+                      const Text('₽', style: TextStyle(fontSize: 18)),
+                      const SizedBox(
                         width: 10,
                       ),
-                      Icon(
+                      const Icon(
                         Icons.east,
                         size: 10,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
-                      Text('21356', style: TextStyle(fontSize: 18)),
-                      SizedBox(
+                      Text(controller.score.value,
+                          style: TextStyle(fontSize: 18)),
+                      const SizedBox(
                         width: 3,
                       ),
                       Text('₽', style: TextStyle(fontSize: 18)),
                     ],
                   ),
-                  const Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text('-',
+                      const Text('-',
                           style: TextStyle(
                               fontSize: 26, fontWeight: FontWeight.bold)),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
-                      Text('20',
-                          style: TextStyle(
+                      Text(() {
+                        final args = Get.arguments as Map<String, dynamic>;
+                        controller.outgoingMoney.value = args['arg2'];
+                        return controller.outgoingMoney.value;
+                      }(),
+                          style: const TextStyle(
                               fontSize: 25, fontWeight: FontWeight.bold)),
-                      Text('₽',
+                      const Text('₽',
                           style: TextStyle(
                               fontSize: 25, fontWeight: FontWeight.bold)),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
                   Container(
@@ -117,7 +128,11 @@ class CheckView extends GetView<CheckController> {
                           'По номеру телефона',
                           style: TextStyle(color: Colors.grey, fontSize: 15),
                         ),
-                        Text('2148784',
+                        Text(() {
+                          final args = Get.arguments as Map<String, dynamic>;
+                          final arg = args['arg1'];
+                          return "+7${arg}";
+                        }(),
                             style:
                                 TextStyle(color: Colors.black, fontSize: 20)),
                       ],
@@ -196,31 +211,36 @@ class CheckView extends GetView<CheckController> {
                         size: 17,
                         color: Colors.blue,
                       ),
-                      SizedBox(width: 10,),
+                      SizedBox(
+                        width: 10,
+                      ),
                       Text(
                         'Обсудить в чате',
                         style: TextStyle(color: Colors.blue, fontSize: 17),
                       )
                     ],
-                  ),SizedBox(height: 20,),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
                   GestureDetector(
-                        onTap: () {
-                          Get.toNamed(Routes.MAIN);
-                        },
-                        child: Container(
-                          height: 50,
-                          width: 350,
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 10, horizontal: 140),
-                          decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 254, 229, 11),
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                          child: const Text(
-                            'Готово',
-                            style: TextStyle(fontSize: 20),
-                          ),
-                        ))
+                      onTap: () {
+                        Get.toNamed(Routes.MAIN);
+                      },
+                      child: Container(
+                        height: 50,
+                        width: 350,
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 10, horizontal: 140),
+                        decoration: BoxDecoration(
+                          color: Color.fromARGB(255, 254, 229, 11),
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        child: const Text(
+                          'Готово',
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ))
                 ],
               ))),
     );

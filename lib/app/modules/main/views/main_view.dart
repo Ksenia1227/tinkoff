@@ -419,15 +419,16 @@ class MainView extends GetView<MainController> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  const Row(children: [
-                                    Text(
-                                      '179,9 ',
-                                      style: TextStyle(
+                                   Row(children: [
+                                   Obx(()=> Text(
+                                      controller.score.value,
+                                      style:const  TextStyle(
                                         fontSize: 20,
                                         fontWeight: FontWeight.bold,
                                       ),
-                                    ),
-                                    Text(
+                                    )),
+                                    const SizedBox(width: 6),
+                                    const Text(
                                       '₽',
                                       style: TextStyle(
                                         fontSize: 20,

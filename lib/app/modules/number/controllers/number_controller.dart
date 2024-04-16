@@ -13,6 +13,8 @@ class NumberController extends GetxController {
   final namePeople = ''.obs;
   FakeService fakeService = Get.find();
   final listPeople = RxList<People>();
+final score=''.obs;
+
    Future<void> getPeople() async {
     listPeople.value = await fakeService.getPeople();
   }
@@ -50,6 +52,7 @@ void searchPeople() {
 void transition() {
   Get.toNamed(Routes.MONEY);
 }
+
   // final count = 0.obs;
   // @override
   // void onInit() {

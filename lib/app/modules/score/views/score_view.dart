@@ -35,7 +35,7 @@ class ScoreView extends GetView<ScoreController> {
                 stops: [0.33, 1.0],
               ),
             ),
-            child: SingleChildScrollView(
+            child: Obx(()=> SingleChildScrollView(
               // child: Container(
               child: ListView(
                 shrinkWrap: true,
@@ -57,16 +57,16 @@ class ScoreView extends GetView<ScoreController> {
                         size: 20,
                       ),
                     ]),
-                    const Row(children: [
-                      Text('238,40',
-                          style: TextStyle(
+                     Row(children: [
+                      Text(controller.score.value,
+                          style: const TextStyle(
                               color: Color.fromARGB(255, 190, 190, 190),
                               fontWeight: FontWeight.bold,
                               fontSize: 32)),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
-                      Text('₽',
+                      const Text('₽',
                           style: TextStyle(
                               color: Color.fromARGB(255, 190, 190, 190),
                               fontWeight: FontWeight.bold,
@@ -407,6 +407,6 @@ class ScoreView extends GetView<ScoreController> {
                               ]))),
                 ],
               ),
-            )));
+            ))));
   }
 }

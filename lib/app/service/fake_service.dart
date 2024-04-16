@@ -3,16 +3,18 @@ import 'dart:math';
 import 'package:get/get.dart';
 
 class FakeNetService extends GetxService {
-  final _score=200.00.obs;
-  final _value=''.obs;
-  Future<String> changeMoney() async {
-    double contr = double.tryParse(Get.arguments)!; 
-    _score.value = _score.value - contr;
-    _value.value= _score.value.toString();
+  final _score='200.00'.obs;
+
+  Future<String> changeMoney(controller) async {
+    double contr = double.tryParse(controller)!;
+    double value = double.tryParse(_score.value)!; 
+    double sc = value - contr;
+    _score.value= sc.toString();
+    print(_score.value);
     await _randomDelay();
-return _value.value;
+return _score.value;
   }
-  String get value=> _value.value;
+  String get value=> _score.value;
 
    Future<void> _randomDelay() async {
     var random = Random().nextInt(2000);

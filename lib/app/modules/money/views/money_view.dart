@@ -29,49 +29,50 @@ class MoneyView extends GetView<MoneyController> {
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
                   children: [
-                    Container(
-                      height: 90,
-                      width: 350,
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 10, horizontal: 22),
-                      decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 71, 71, 71),
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      child: const Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'с Tinkoff Black',
-                            style: TextStyle(fontSize: 16, color: Colors.white),
+                    Obx(() => Container(
+                          height: 90,
+                          width: 350,
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 10, horizontal: 22),
+                          decoration: BoxDecoration(
+                            color: Color.fromARGB(255, 71, 71, 71),
+                            borderRadius: BorderRadius.circular(15),
                           ),
-                          Row(children: [
-                            Text(
-                              '188,40',
-                              style: TextStyle(
-                                  fontSize: 30,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text(
+                                'с Tinkoff Black',
+                                style: TextStyle(
+                                    fontSize: 16, color: Colors.white),
+                              ),
+                              Row(children: [
+                                Text(
+                                  controller.score.value,
+                                  style: const TextStyle(
+                                      fontSize: 30,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                const SizedBox(
+                                  width: 6,
+                                ),
+                                const Icon(
+                                  Icons.currency_ruble,
+                                  size: 30,
                                   color: Colors.white,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            SizedBox(
-                              width: 6,
-                            ),
-                            Icon(
-                              Icons.currency_ruble,
-                              size: 30,
-                              color: Colors.white,
-                            )
-                          ])
-                        ],
-                      ),
-                    ),
+                                )
+                              ])
+                            ],
+                          ),
+                        )),
                     const SizedBox(
                       height: 20,
                     ),
                     Container(
                         height: 52,
                         width: 350,
-                         padding: const EdgeInsets.symmetric(horizontal: 13),
+                        padding: const EdgeInsets.symmetric(horizontal: 13),
                         decoration: BoxDecoration(
                           color: Colors.grey[100],
                           borderRadius: BorderRadius.circular(15),
@@ -84,7 +85,10 @@ class MoneyView extends GetView<MoneyController> {
                                     Get.arguments as Map<String, dynamic>;
                                 final arg1 = args['arg1'];
                                 return arg1;
-                              }(), style: TextStyle(fontSize: 13,color: Color.fromARGB(255, 120, 120, 120))
+                              }(),
+                                  style: TextStyle(
+                                      fontSize: 13,
+                                      color: Color.fromARGB(255, 120, 120, 120))
                                   // Text( int.tryParse(Get.arguments) != null ? "+7${Get.arguments}" : Get.arguments,
                                   //     style: TextStyle(fontSize: 20))
                                   // subtitle: Text(
@@ -98,12 +102,12 @@ class MoneyView extends GetView<MoneyController> {
                                 () {
                                   final args =
                                       Get.arguments as Map<String, dynamic>;
-                                  final arg2 = args['arg2'];
-                                  return "+7$arg2";
+                                  controller.currentPeople.value = args['arg2'];
+                                  return "+7${controller.currentPeople.value}";
                                 }(),
                                 style: const TextStyle(
-                                    fontSize: 17,
-                                    ),
+                                  fontSize: 17,
+                                ),
                               )
                             ])),
                     const SizedBox(
@@ -176,7 +180,11 @@ class MoneyView extends GetView<MoneyController> {
                     ),
                     GestureDetector(
                         onTap: () {
-                          Get.offAndToNamed(Routes.CHECK);
+                          Get.offAndToNamed(Routes.CHECK, arguments: {
+                            'arg1': controller.currentPeople.value,
+                            'arg2': controller.moneyController.text,
+                          });
+                          controller.transferMoney();
                         },
                         child: Container(
                           height: 50,
