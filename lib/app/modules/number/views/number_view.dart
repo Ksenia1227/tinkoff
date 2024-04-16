@@ -3,8 +3,6 @@ import 'package:flutter/services.dart';
 
 import 'package:get/get.dart';
 import 'package:tinkoff/app/modules/money/views/money_view.dart';
-import 'package:tinkoff/app/routes/app_pages.dart';
-
 import '../controllers/number_controller.dart';
 
 class NumberView extends GetView<NumberController> {
@@ -20,9 +18,9 @@ class NumberView extends GetView<NumberController> {
                   context,
                   MaterialPageRoute(
                     builder: (context) => MoneyView(),
-                    settings: RouteSettings(arguments: {
-                      {'arg1': '', 'arg2': input}
-                    }),
+                    settings: RouteSettings(arguments: 
+                      {'arg1':'', 'arg2': input}
+                    ),
                     //                     maintainState: true));
                     // Get.toNamed(Routes.MONEY, arguments: {'arg1': '', 'arg2': input});
                     // controller.numberOrNameController.clear();

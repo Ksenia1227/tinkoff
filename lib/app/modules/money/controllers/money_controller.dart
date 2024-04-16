@@ -14,6 +14,7 @@ class MoneyController extends GetxController {
   final score = ''.obs;
   final openPageCount = 0.obs; 
 
+
  
   void checkAndSearchScore() { 
     openPageCount.value=1+openPageCount.value; 
@@ -29,10 +30,12 @@ class MoneyController extends GetxController {
 
   void searchScore() {
     score.value = fakeNetService.value;
+
   }
 
   void transferMoney(){
     fakeNetService.changeMoney(moneyController.text);
+    fakeNetService.changeWaste(moneyController.text);
   }
 
   @override

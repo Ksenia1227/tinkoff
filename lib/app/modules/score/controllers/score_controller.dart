@@ -9,6 +9,7 @@ class ScoreController extends GetxController {
   final listPeople = RxList<People>();
    FakeNetService fakeNetService = Get.find();
   final score=''.obs;
+   final waste = ''.obs;
 
   Future<void> getPeople() async {
     listPeople.value = await fakeService.getPeople();
@@ -17,6 +18,7 @@ class ScoreController extends GetxController {
 
 void searchScore(){
  score.value=fakeNetService.value;
+ waste.value = fakeNetService.waste;
 }
   @override
   void onInit()  {

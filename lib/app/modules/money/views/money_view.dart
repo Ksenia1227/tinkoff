@@ -159,7 +159,7 @@ class MoneyView extends GetView<MoneyController> {
                       'Сумма от 0 ₽ до 200 000 000 ₽',
                       style: TextStyle(fontSize: 16, color: Colors.grey),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 18,
                     ),
                     TextField(

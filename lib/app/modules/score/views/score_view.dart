@@ -242,10 +242,10 @@ class ScoreView extends GetView<ScoreController> {
                                         color: Colors.black,
                                         // fontWeight: FontWeight.bold,
                                         fontSize: 14)),
-                                const Row(
+                                 Row(
                                   children: [
-                                    Text('3 585',
-                                        style: TextStyle(
+                                    Text(controller.waste.value,
+                                        style: const TextStyle(
                                             color: Colors.black, fontSize: 14)),
                                     Icon(
                                       Icons.currency_ruble,
@@ -315,7 +315,7 @@ class ScoreView extends GetView<ScoreController> {
                                     ),
                                     SizedBox(width: 6),
                                     Text(
-                                      '144 ₽',
+                                      '10 ₽',
                                       style: TextStyle(
                                           color: Color.fromARGB(
                                               255, 218, 217, 217),

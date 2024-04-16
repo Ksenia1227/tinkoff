@@ -220,13 +220,13 @@ class MainView extends GetView<MainController> {
                                           color: Colors.black,
                                           // fontWeight: FontWeight.bold,
                                           fontSize: 16)),
-                                  const Row(
+                                   Row(
                                     children: [
-                                      Text('3 585',
-                                          style: TextStyle(
+                                      Text(  controller.waste.value,
+                                          style: const TextStyle(
                                               color: Colors.black,
                                               fontSize: 16)),
-                                      Icon(
+                                      const Icon(
                                         Icons.currency_ruble,
                                         size: 17,
                                       ),
@@ -478,7 +478,7 @@ class MainView extends GetView<MainController> {
                                       ),
                                       SizedBox(width: 4),
                                       Text(
-                                        '144 ₽',
+                                        '10 ₽',
                                         style: TextStyle(
                                             color: Color.fromARGB(
                                                 255, 218, 217, 217),
