@@ -13,6 +13,7 @@ class MoneyController extends GetxController {
   FakeService fakeService = Get.find();
   final score = ''.obs;
   final openPageCount = 0.obs; 
+  // final  moneyHintColor=false.obs;
 
 
  

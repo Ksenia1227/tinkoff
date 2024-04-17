@@ -14,7 +14,7 @@ class CheckController extends GetxController {
   var mainController = Get.find<MainController>();
   var scoreController = Get.find<ScoreController>();
   var moneyController = Get.find<MoneyController>();
- var numberController = Get.find<NumberController>();
+//  var numberController = Get.find<NumberController>();
 
   void searchScore() {
     score.value = fakeNetService.value;

@@ -224,7 +224,7 @@ class CheckView extends GetView<CheckController> {
                          controller.moneyController.searchScore();
                         // controller.searchScore();
                          controller.moneyController.moneyController.clear();
-                         controller.numberController.numberOrNameController.clear();
+                        //  controller.numberController.numberOrNameController.clear();
                         
                       },
                       child: Container(

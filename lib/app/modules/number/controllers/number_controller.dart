@@ -49,9 +49,9 @@ void searchPeople() {
       filterPeople.assignAll(listPeople);
     }
 }
-void transition() {
-  Get.toNamed(Routes.MONEY);
-}
+// void transition() {
+//   Get.toNamed(Routes.MONEY);
+// }
 
   // final count = 0.obs;
   // @override
@@ -66,6 +66,7 @@ void transition() {
 
   // @override
   // void onClose() {
+   
   //   super.onClose();
   // }
 

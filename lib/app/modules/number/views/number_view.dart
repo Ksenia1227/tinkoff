@@ -24,7 +24,7 @@ class NumberView extends GetView<NumberController> {
                     //                     maintainState: true));
                     // Get.toNamed(Routes.MONEY, arguments: {'arg1': '', 'arg2': input});
                     // controller.numberOrNameController.clear();
-                  ));
+                  ));controller.numberOrNameController.clear();
             }
           },
           child: Icon(Icons.arrow_forward),

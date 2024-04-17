@@ -9,7 +9,7 @@ class FakeNetService extends GetxService {
   Future<String> changeMoney(controller) async {
     double contr = double.tryParse(controller)!;
     double value = double.tryParse(_score.value)!;
-    _score.value = (value - contr).toString();
+    _score.value = (value - contr).toStringAsFixed(2);
     await _randomDelay();
     return _score.value;
   }
@@ -25,7 +25,7 @@ class FakeNetService extends GetxService {
   Future<String> changeWaste(controller) async {
     double contr = double.tryParse(controller)!;
     double value = double.tryParse(_wastes.value)!;
-    _wastes.value = (value + contr).toString();
+    _wastes.value = (value + contr).toStringAsFixed(2);
     await _randomDelay();
     return _wastes.value;
   }

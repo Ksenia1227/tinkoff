@@ -8,10 +8,10 @@ import '../controllers/money_controller.dart';
 
 class MoneyView extends GetView<MoneyController> {
   const MoneyView({Key? key}) : super(key: key);
-   
+
   @override
   Widget build(BuildContext context) {
-    final controller=Get.put(MoneyController());
+    final controller = Get.put(MoneyController());
     return Scaffold(
         appBar: AppBar(
           title: const Text('Перевести'),
@@ -123,18 +123,19 @@ class MoneyView extends GetView<MoneyController> {
                             buildContainer(1, 'assets/company/cber.png',
                                 'Сбербанк', Colors.green[100]),
                             SizedBox(width: 22),
-                            buildContainer(2, 'assets/company/sbp.png',
+                            buildContainer(2, 'assets/company/spb.png',
                                 'Другой банк', Colors.grey[100]),
                           ],
                         )),
                     const SizedBox(
                       height: 22,
                     ),
-                    TextField(
+                 TextField(
                         controller: controller.moneyController,
                         style: const TextStyle(
                             color: Color.fromARGB(255, 2, 2, 2)),
                         decoration: InputDecoration(
+                          //  errorText: controller.moneyHintColor.value ? 'jjjj' : null,
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10),
                               borderSide: BorderSide.none),
@@ -149,9 +150,17 @@ class MoneyView extends GetView<MoneyController> {
                             color: Colors.blue,
                           ),
                         ),
-                        inputFormatters: [
-                          FilteringTextInputFormatter.digitsOnly,
-                        ]),
+                        keyboardType:
+                            TextInputType.numberWithOptions(decimal: true),
+                        // inputFormatters: [
+                        //   FilteringTextInputFormatter.digitsOnly,
+                        // ]
+                        onChanged: (value) {
+                          if (value.contains(',')) {
+                            controller.moneyController.value = TextEditingValue(
+                                text: value.replaceAll(',', '.'));
+                          }
+                        }),
                     const SizedBox(
                       height: 11,
                     ),
@@ -182,13 +191,17 @@ class MoneyView extends GetView<MoneyController> {
                     ),
                     GestureDetector(
                         onTap: () {
-                          Get.offAndToNamed(Routes.CHECK, arguments: {
-                            'arg1': controller.currentPeople.value,
-                            'arg2': controller.moneyController.text,
-                          });
-                          controller.transferMoney();
-                          controller.checkAndSearchScore();
-                          // controller.checkController.searchScore();
+                          if (controller.moneyController.text.isEmpty) {
+                            // controller.moneyHintColor.value = true;
+                          } else {
+                            Get.offAndToNamed(Routes.CHECK, arguments: {
+                              'arg1': controller.currentPeople.value,
+                              'arg2': controller.moneyController.text,
+                            });
+                            controller.transferMoney();
+                            controller.checkAndSearchScore();
+                            // controller.checkController.searchScore();
+                           }
                         },
                         child: Container(
                           height: 50,
