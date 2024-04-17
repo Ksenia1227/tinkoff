@@ -13,6 +13,7 @@ class NumberView extends GetView<NumberController> {
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             var input = controller.numberOrNameController.text;
+            controller.numberOrNameController.text='';
             if (input.length == 10) {
               Navigator.push(
                   context,
@@ -24,7 +25,8 @@ class NumberView extends GetView<NumberController> {
                     //                     maintainState: true));
                     // Get.toNamed(Routes.MONEY, arguments: {'arg1': '', 'arg2': input});
                     // controller.numberOrNameController.clear();
-                  ));controller.numberOrNameController.clear();
+                  ));
+                  // controller.numberOrNameController.clear();
             }
           },
           child: Icon(Icons.arrow_forward),

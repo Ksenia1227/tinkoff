@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tinkoff/app/data/fakedata/fake_data_people.dart';
 import 'package:tinkoff/app/data/models/people_model.dart';
-import 'package:tinkoff/app/routes/app_pages.dart';
 import 'package:tinkoff/app/service/fake_name_service.dart';
 
 class NumberController extends GetxController {

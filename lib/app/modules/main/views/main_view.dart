@@ -375,7 +375,8 @@ class MainView extends GetView<MainController> {
                   ),
                   GestureDetector(
                       onTap: () {
-                        Get.toNamed(Routes.SCORE);
+                         Future.delayed(Duration(seconds: 1), () {
+                        Get.toNamed(Routes.SCORE);});
                       },
                       child: Container(
                           height: 110,

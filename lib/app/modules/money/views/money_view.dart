@@ -1,8 +1,8 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:get/get.dart';
-import 'package:tinkoff/app/routes/app_pages.dart';
 
 import '../controllers/money_controller.dart';
 
@@ -130,7 +130,7 @@ class MoneyView extends GetView<MoneyController> {
                     const SizedBox(
                       height: 22,
                     ),
-                 TextField(
+                 Obx(()=>TextField(
                         controller: controller.moneyController,
                         style: const TextStyle(
                             color: Color.fromARGB(255, 2, 2, 2)),
@@ -141,26 +141,23 @@ class MoneyView extends GetView<MoneyController> {
                               borderSide: BorderSide.none),
                           contentPadding: EdgeInsets.symmetric(horizontal: 20),
                           hintText: '0 ₽',
-                          hintStyle: const TextStyle(
-                              fontSize: 20, color: Colors.black),
+                          hintStyle: TextStyle(
+                              fontSize: 20, color:controller.moneyHintColor.value),
                           fillColor: Colors.grey[100],
                           filled: true,
                           suffixIcon: const Icon(
                             Icons.calculate,
                             color: Colors.blue,
                           ),
-                        ),
+                 ),
                         keyboardType:
                             TextInputType.numberWithOptions(decimal: true),
-                        // inputFormatters: [
-                        //   FilteringTextInputFormatter.digitsOnly,
-                        // ]
                         onChanged: (value) {
                           if (value.contains(',')) {
                             controller.moneyController.value = TextEditingValue(
                                 text: value.replaceAll(',', '.'));
                           }
-                        }),
+                        })),
                     const SizedBox(
                       height: 11,
                     ),
@@ -192,14 +189,16 @@ class MoneyView extends GetView<MoneyController> {
                     GestureDetector(
                         onTap: () {
                           if (controller.moneyController.text.isEmpty) {
-                            // controller.moneyHintColor.value = true;
+                           controller.moneyHintColor.value = Colors.red;
                           } else {
-                            Get.offAndToNamed(Routes.CHECK, arguments: {
-                              'arg1': controller.currentPeople.value,
-                              'arg2': controller.moneyController.text,
-                            });
-                            controller.transferMoney();
-                            controller.checkAndSearchScore();
+                            // Get.offAndToNamed(Routes.CHECK, arguments: {
+                            //   'arg1': controller.currentPeople.value,
+                            //   'arg2': controller.moneyController.text,
+                            // });
+                            controller.check(context);
+                            // controller.transferMoney();
+                            // controller.checkAndSearchScore();
+                            // controller.moneyHintColor.value = Colors.black;
                             // controller.checkController.searchScore();
                            }
                         },
