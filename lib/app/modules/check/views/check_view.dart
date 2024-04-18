@@ -14,6 +14,7 @@ class CheckView extends GetView<CheckController> {
       appBar: AppBar(
         title: const Text('Перевод'),
         centerTitle: true,
+        leading: null,
         backgroundColor: Colors.grey[200],
       ),
       body: Container(
@@ -223,6 +224,8 @@ class CheckView extends GetView<CheckController> {
                         controller.scoreController.searchScore();
                          controller.moneyController.searchScore();
                         // controller.searchScore();
+                        controller.mainController.changeWight();
+                        controller.scoreController.changeWight();
                          controller.moneyController.moneyController.clear();
                         //  controller.numberController.numberOrNameController.clear();
                         

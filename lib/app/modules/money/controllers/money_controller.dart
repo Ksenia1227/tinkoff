@@ -55,10 +55,10 @@ class MoneyController extends GetxController {
           );
         });
     await _randomDelay();
-    double sc =
-        double.tryParse(score.value)! - double.tryParse(moneyController.text)!;
+    bool sc =
+        fakeNetService.check(moneyController.text);
     Get.back();
-    if (sc < 0) {
+    if (!sc) {
       showDialog(
           context: context,
           builder: (BuildContext context) {
@@ -90,12 +90,13 @@ class MoneyController extends GetxController {
             );
           });
     } else {
-      Get.offAndToNamed(Routes.CHECK, arguments: {
+      Get.offNamed(Routes.CHECK, arguments: {
         'arg1': currentPeople.value,
         'arg2': moneyController.text,
       });
       transferMoney();
       checkAndSearchScore();
+      selectedIndex.value=0;
       moneyHintColor.value = Colors.black;
     }
   }

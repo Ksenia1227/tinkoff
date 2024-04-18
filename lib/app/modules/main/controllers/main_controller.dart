@@ -6,6 +6,10 @@ class MainController extends GetxController {
   final selectedIndex = 0.obs;
   FakeNetService fakeNetService = Get.find();
   final score = ''.obs;
+  final bluewight=0.0.obs;
+  final yellowwight=0.0.obs;
+  final purplewight=0.0.obs;
+  final yellowMoney=78.87.obs;
   final listt = [
     'Взять деньги',
     'Копить',
@@ -34,9 +38,20 @@ class MainController extends GetxController {
   RxList get text1 => listtext1;
   RxList get text2 => listtext2;
 
+  void changeWight(){
+  var blueMoney=131.45;
+  var purpleMoney=52.58;
+  double ws= double.tryParse(waste.value)!;
+  yellowMoney.value=fakeNetService.minusMoney.value+yellowMoney.value;
+  bluewight.value=100*blueMoney/ws;
+  purplewight.value=100*purpleMoney/ws;
+  yellowwight.value=100*yellowMoney.value/ws;
+  }
+
   @override
   void onInit() {
     searchScore();
+    changeWight();
     super.onInit();
   }
 

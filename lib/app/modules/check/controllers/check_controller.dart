@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 import 'package:tinkoff/app/modules/main/controllers/main_controller.dart';
 import 'package:tinkoff/app/modules/money/controllers/money_controller.dart';
-import 'package:tinkoff/app/modules/number/controllers/number_controller.dart';
 import 'package:tinkoff/app/modules/score/controllers/score_controller.dart';
 import 'package:tinkoff/app/service/fake_service.dart';
 

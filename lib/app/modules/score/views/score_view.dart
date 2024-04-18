@@ -259,7 +259,7 @@ class ScoreView extends GetView<ScoreController> {
                                 Row(
                                   children: [
                                     Container(
-                                        width: 60,
+                                        width: controller.bluewight.value,
                                         height: 8,
                                         decoration: BoxDecoration(
                                           borderRadius:
@@ -267,11 +267,11 @@ class ScoreView extends GetView<ScoreController> {
                                           color: Colors.blue,
                                         )),
                                     Container(
-                                        width: 40,
+                                        width:controller.yellowwight.value,
                                         height: 8,
                                         color: Colors.yellow),
                                     Container(
-                                        width: 15,
+                                        width: controller.purplewight.value,
                                         height: 8,
                                         decoration: BoxDecoration(
                                           borderRadius:

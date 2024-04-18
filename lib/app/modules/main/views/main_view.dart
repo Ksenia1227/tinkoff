@@ -140,7 +140,7 @@ class MainView extends GetView<MainController> {
                               height: 90,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(20),
-                                color: const Color.fromARGB(255, 181, 28, 28),
+                                color: Color.fromARGB(255, 185, 183, 183),
                               ),
                               child: Stack(children: [
                                 SizedBox(
@@ -254,7 +254,7 @@ class MainView extends GetView<MainController> {
                                   Row(
                                     children: [
                                       Container(
-                                          width: 65,
+                                          width: controller.bluewight.value,
                                           height: 8,
                                           decoration: BoxDecoration(
                                             borderRadius:
@@ -262,11 +262,11 @@ class MainView extends GetView<MainController> {
                                             color: Colors.blue,
                                           )),
                                       Container(
-                                          width: 40,
+                                          width: controller.yellowwight.value,
                                           height: 8,
                                           color: Colors.yellow),
                                       Container(
-                                          width: 15,
+                                          width: controller.purplewight.value,
                                           height: 8,
                                           decoration: BoxDecoration(
                                             borderRadius:
@@ -615,12 +615,12 @@ class MainView extends GetView<MainController> {
                         ),
                       )),
 
-                  Obx(() => Container(
+                 Container(
                         padding:
                             EdgeInsets.symmetric(horizontal: 3, vertical: 15),
-                        child: SingleChildScrollView(
+                        child:  
+                         Obx(() => SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
-                            physics: NeverScrollableScrollPhysics(),
                             child: Row(
                                 children: List.generate(
                               controller.list.length,
@@ -646,7 +646,7 @@ class MainView extends GetView<MainController> {
                                 );
                               },
                             ))),
-                      )),
+                  ) ),
                   Container(
                     height: 60,
                     width: 130,
