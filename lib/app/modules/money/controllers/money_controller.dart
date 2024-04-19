@@ -11,7 +11,9 @@ class MoneyController extends GetxController {
   //TODO: Implement MoneyController
   final moneyController = TextEditingController();
   final selectedIndex = 0.obs;
+  final currentnumPeople = ''.obs;
   final currentPeople = ''.obs;
+  final comisionText = 'Сумма от 0 ₽ до 200 000 000 ₽'.obs;
   FakeNetService fakeNetService = Get.find();
   FakeService fakeService = Get.find();
   final score = ''.obs;
@@ -41,10 +43,14 @@ class MoneyController extends GetxController {
           return AlertDialog(
             content: Row(children: [
               Container(
-                  height: 35, width: 35, child: CircularProgressIndicator()),SizedBox(width: 10,),
+                  height: 35, width: 35, child: CircularProgressIndicator()),
+              SizedBox(
+                width: 14,
+              ),
               const Text(
                 'Подождите, пожалуйста...',
-                style: TextStyle(fontSize: 19),
+                style: TextStyle(
+                    fontSize: 17, color: Color.fromARGB(255, 122, 122, 122)),
               )
             ]),
             contentPadding:
@@ -55,8 +61,7 @@ class MoneyController extends GetxController {
           );
         });
     await _randomDelay();
-    bool sc =
-        fakeNetService.check(moneyController.text);
+    bool sc = fakeNetService.check(moneyController.text);
     Get.back();
     if (!sc) {
       showDialog(
@@ -90,14 +95,16 @@ class MoneyController extends GetxController {
             );
           });
     } else {
-      Get.offNamed(Routes.CHECK, arguments: {
-        'arg1': currentPeople.value,
-        'arg2': moneyController.text,
-      });
-      transferMoney();
-      checkAndSearchScore();
-      selectedIndex.value=0;
-      moneyHintColor.value = Colors.black;
+        Get.offNamed(Routes.CHECK, arguments: {
+          'arg1': currentnumPeople.value,
+          'arg2': moneyController.text,
+          'arg3': selectedIndex.value,
+          'arg4': currentPeople.value,
+        });
+        transferMoney();
+        checkAndSearchScore();
+        selectedIndex.value = 0;
+        moneyHintColor.value = Colors.black;
     }
   }
 
@@ -110,9 +117,28 @@ class MoneyController extends GetxController {
     fakeNetService.changeWaste(moneyController.text);
   }
 
+  void checkComision() {
+    if (moneyController.text.isNotEmpty) {
+      comisionText.value = 'Комиссия не взимается';
+    } else {
+      dopcheck();
+    }
+  }
+
+  void dopcheck() {
+    if (selectedIndex.value == 0) {
+      comisionText.value = 'Сумма от 0 ₽ до 200 000 000 ₽';
+    } else {
+      comisionText.value = 'Сумма от 10 ₽ до 999 999 ₽';
+    }
+  }
+
   @override
   void onInit() {
     searchScore();
+    moneyController.addListener(() {
+      checkComision();
+    });
     super.onInit();
   }
 

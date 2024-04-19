@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -12,6 +11,10 @@ class MoneyView extends GetView<MoneyController> {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(MoneyController());
+    final args = Get.arguments as Map<String, dynamic>;
+    final arg1 = args['arg1'];
+    final arg2 = args['arg2'];
+
     return Scaffold(
         appBar: AppBar(
           title: const Text('Перевести'),
@@ -22,6 +25,7 @@ class MoneyView extends GetView<MoneyController> {
             ),
             onPressed: () {
               Get.back();
+              controller.moneyController.clear();
             },
           ),
         ),
@@ -83,29 +87,20 @@ class MoneyView extends GetView<MoneyController> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(() {
-                                final args =
-                                    Get.arguments as Map<String, dynamic>;
-                                final arg1 = args['arg1'];
+                                controller.currentPeople.value = arg1;
                                 return arg1;
                               }(),
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontSize: 13,
-                                      color: Color.fromARGB(255, 120, 120, 120))
-                                  // Text( int.tryParse(Get.arguments) != null ? "+7${Get.arguments}" : Get.arguments,
-                                  //     style: TextStyle(fontSize: 20))
-                                  // subtitle: Text(
-                                  // "+7${Get.arguments['arg1'] as Map<String, dynamic>}"),
-                                  // title: Text('${Get.arguments['arg2'] as Map<String, dynamic>}'),
-                                  ),
+                                      color:
+                                          Color.fromARGB(255, 120, 120, 120))),
                               const SizedBox(
                                 height: 0.5,
                               ),
                               Text(
                                 () {
-                                  final args =
-                                      Get.arguments as Map<String, dynamic>;
-                                  controller.currentPeople.value = args['arg2'];
-                                  return "+7${controller.currentPeople.value}";
+                                  controller.currentnumPeople.value = arg2;
+                                  return "+7${controller.currentnumPeople.value}";
                                 }(),
                                 style: const TextStyle(
                                   fontSize: 17,
@@ -130,10 +125,13 @@ class MoneyView extends GetView<MoneyController> {
                     const SizedBox(
                       height: 22,
                     ),
-                 Obx(()=>TextField(
+                    Obx(() => TextField(
                         controller: controller.moneyController,
-                        style: const TextStyle(
-                            color: Color.fromARGB(255, 2, 2, 2)),
+                        style:  TextStyle(
+                          fontSize: 20,
+                            color:controller.moneyHintColor.value
+                            //  Color.fromARGB(255, 2, 2, 2)
+                             ),
                         decoration: InputDecoration(
                           //  errorText: controller.moneyHintColor.value ? 'jjjj' : null,
                           border: OutlineInputBorder(
@@ -142,14 +140,15 @@ class MoneyView extends GetView<MoneyController> {
                           contentPadding: EdgeInsets.symmetric(horizontal: 20),
                           hintText: '0 ₽',
                           hintStyle: TextStyle(
-                              fontSize: 20, color:controller.moneyHintColor.value),
+                              fontSize: 20,
+                              color: controller.moneyHintColor.value),
                           fillColor: Colors.grey[100],
                           filled: true,
                           suffixIcon: const Icon(
                             Icons.calculate,
                             color: Colors.blue,
                           ),
-                 ),
+                        ),
                         keyboardType:
                             TextInputType.numberWithOptions(decimal: true),
                         onChanged: (value) {
@@ -161,10 +160,13 @@ class MoneyView extends GetView<MoneyController> {
                     const SizedBox(
                       height: 11,
                     ),
-                    const Text(
-                      'Сумма от 0 ₽ до 200 000 000 ₽',
-                      style: TextStyle(fontSize: 16, color: Colors.grey),
-                    ),
+                    Obx(() => Text(
+                          controller.comisionText.value,
+                          textAlign: TextAlign.start,
+                          style:const  TextStyle(
+                              fontSize: 16,
+                              color: Color.fromARGB(255, 61, 61, 61)),
+                        )),
                     const SizedBox(
                       height: 18,
                     ),
@@ -189,18 +191,18 @@ class MoneyView extends GetView<MoneyController> {
                     GestureDetector(
                         onTap: () {
                           if (controller.moneyController.text.isEmpty) {
-                           controller.moneyHintColor.value = Colors.red;
+                            controller.moneyHintColor.value = Colors.red;
                           } else {
-                            // Get.offAndToNamed(Routes.CHECK, arguments: {
-                            //   'arg1': controller.currentPeople.value,
-                            //   'arg2': controller.moneyController.text,
-                            // });
-                            controller.check(context);
-                            // controller.transferMoney();
-                            // controller.checkAndSearchScore();
-                            // controller.moneyHintColor.value = Colors.black;
-                            // controller.checkController.searchScore();
-                           }
+                            if (controller.selectedIndex.value >= 1 &&
+                                double.tryParse(
+                                        controller.moneyController.text)! <
+                                    10) {
+                              controller.moneyHintColor.value = Colors.red;
+                            } else {
+                              controller.check(context);
+                              // controller.transferMoney();
+                            }
+                          }
                         },
                         child: Container(
                           height: 50,
@@ -224,6 +226,7 @@ class MoneyView extends GetView<MoneyController> {
     return GestureDetector(
         onTap: () {
           controller.selectContainer(index);
+          controller.dopcheck();
         },
         child: Container(
           height: 93,

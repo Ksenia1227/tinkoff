@@ -139,9 +139,14 @@ class MainView extends GetView<MainController> {
                               width: 90,
                               height: 90,
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                color: Color.fromARGB(255, 185, 183, 183),
-                              ),
+                                  borderRadius: BorderRadius.circular(20),
+                                  color: Color.fromARGB(255, 185, 183, 183),
+                                  border: Border.all(
+                                    color:
+                                        Color.fromARGB(255, 47, 137, 211),
+                                    width: 2,
+                                    
+                                  ),), padding: EdgeInsets.all(2),
                               child: Stack(children: [
                                 SizedBox(
                                     width: 90,
@@ -220,9 +225,9 @@ class MainView extends GetView<MainController> {
                                           color: Colors.black,
                                           // fontWeight: FontWeight.bold,
                                           fontSize: 16)),
-                                   Row(
+                                  Row(
                                     children: [
-                                      Text(  controller.waste.value,
+                                      Text(controller.waste.value,
                                           style: const TextStyle(
                                               color: Colors.black,
                                               fontSize: 16)),
@@ -375,8 +380,9 @@ class MainView extends GetView<MainController> {
                   ),
                   GestureDetector(
                       onTap: () {
-                         Future.delayed(Duration(seconds: 1), () {
-                        Get.toNamed(Routes.SCORE);});
+                        Future.delayed(Duration(seconds: 1), () {
+                          Get.toNamed(Routes.SCORE);
+                        });
                       },
                       child: Container(
                           height: 110,
@@ -420,14 +426,14 @@ class MainView extends GetView<MainController> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                   Row(children: [
-                                   Obx(()=> Text(
-                                      controller.score.value,
-                                      style:const  TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    )),
+                                  Row(children: [
+                                    Obx(() => Text(
+                                          controller.score.value,
+                                          style: const TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        )),
                                     const SizedBox(width: 6),
                                     const Text(
                                       '₽',
@@ -615,11 +621,11 @@ class MainView extends GetView<MainController> {
                         ),
                       )),
 
-                 Container(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 3, vertical: 15),
-                        child:  
-                         Obx(() => SingleChildScrollView(
+                  Container(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 3, vertical: 15),
+                      child: Obx(
+                        () => SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
                             child: Row(
                                 children: List.generate(
@@ -646,7 +652,7 @@ class MainView extends GetView<MainController> {
                                 );
                               },
                             ))),
-                  ) ),
+                      )),
                   Container(
                     height: 60,
                     width: 130,

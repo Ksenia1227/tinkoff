@@ -38,6 +38,7 @@ class ScoreController extends GetxController {
   void onInit() {
     searchScore();
     getPeople();
+    changeWight();
     super.onInit();
   }
 

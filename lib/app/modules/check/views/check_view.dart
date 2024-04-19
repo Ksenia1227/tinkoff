@@ -9,6 +9,11 @@ class CheckView extends GetView<CheckController> {
   const CheckView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final args = Get.arguments as Map<String, dynamic>;
+    final arg = args['arg1'];
+    final arg2 = args['arg2'];
+    final arg3 = args['arg3'];
+     final arg4 = args['arg4'];
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
@@ -35,9 +40,10 @@ class CheckView extends GetView<CheckController> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(controller.oldscore.value,  style: const TextStyle(
-                                 decoration: TextDecoration.lineThrough,
-                                  fontSize: 18)),
+                      Text(controller.oldscore.value,
+                          style: const TextStyle(
+                              decoration: TextDecoration.lineThrough,
+                              fontSize: 18)),
                       const SizedBox(
                         width: 3,
                       ),
@@ -70,8 +76,7 @@ class CheckView extends GetView<CheckController> {
                         width: 10,
                       ),
                       Text(() {
-                          final args = Get.arguments as Map<String, dynamic>;
-                          controller.outgoingMoney.value = args['arg2'];
+                        controller.outgoingMoney.value = arg2;
                         return controller.outgoingMoney.value;
                       }(),
                           style: const TextStyle(
@@ -89,42 +94,45 @@ class CheckView extends GetView<CheckController> {
                     height: 170,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10.0),
-                      gradient: const LinearGradient(
+                      gradient: LinearGradient(
                           begin: Alignment.topCenter,
                           end: Alignment.bottomCenter,
                           colors: [
-                            Colors.yellow,
+                            arg3 == 0 ? Colors.yellow : Colors.green,
                             Colors.white,
                           ],
                           stops: [
-                            0.3,
-                            0.7
+                            0.5,
+                            0.5
                           ]),
                     ),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
+                        SizedBox(height: 10),
+                        Text(arg4, style: TextStyle(fontSize: 20),),
+                        SizedBox(height: 15,),
                         SizedBox(
-                            width: 35,
-                            height: 35,
+                            width: 42,
+                            height: 42,
                             child: ClipRRect(
-                              borderRadius: BorderRadius.circular(10),
-                              child: const Image(
+                              borderRadius: BorderRadius.circular(18),
+                              child: Image(
                                 image: AssetImage(
-                                  'assets/company/tinkof.png',
+                                  arg3 == 1
+                                      ? 'assets/company/sber.png'
+                                      : 'assets/company/tinkof.png',
                                 ),
                                 fit: BoxFit.cover,
                               ),
                             )),
-                        const SizedBox(height: 20),
+                        const SizedBox(height: 10),
                         const Text(
                           'По номеру телефона',
                           style: TextStyle(color: Colors.grey, fontSize: 15),
                         ),
                         Text(() {
-                          final args = Get.arguments as Map<String, dynamic>;
-                          final arg = args['arg1'];
                           return "+7${arg}";
                         }(),
                             style:
@@ -222,13 +230,12 @@ class CheckView extends GetView<CheckController> {
                         Get.toNamed(Routes.MAIN);
                         controller.mainController.searchScore();
                         controller.scoreController.searchScore();
-                         controller.moneyController.searchScore();
+                        controller.moneyController.searchScore();
                         // controller.searchScore();
                         controller.mainController.changeWight();
                         controller.scoreController.changeWight();
-                         controller.moneyController.moneyController.clear();
+                        controller.moneyController.moneyController.clear();
                         //  controller.numberController.numberOrNameController.clear();
-                        
                       },
                       child: Container(
                         height: 50,
